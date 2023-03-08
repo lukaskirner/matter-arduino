@@ -1,0 +1,11 @@
+sample:
+  description: Matter Arduino Sensor sample
+  name: Matter Arduino Sensor
+tests:
+  sample.matter.sensor.debug:
+    build_only: true
+    extra_args: CONF_FILE=prj.conf
+    integration_platforms:
+      - arduino_nano_33_ble
+      - arduino_nano_33_ble_sense
+    platform_allow: arduino_nano_33_ble arduino_nano_33_ble_sense
