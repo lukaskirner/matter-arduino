@@ -78,7 +78,7 @@ void StopSensorTimer(){
 }
 
 void AppTask::SensorActivateHandler(const AppEvent &) {
-	StartSensorTimer(500);
+	StartSensorTimer(10000);
 }
 
 void AppTask::SensorDeactivateHandler(const AppEvent &) {
@@ -167,6 +167,12 @@ CHIP_ERROR AppTask::Init() {
 
 	k_timer_init(&sSensorTimer, &SensorTimerHandler, nullptr);
 	k_timer_user_data_set(&sSensorTimer, this);
+
+	// Start Timer
+	AppEvent event;
+	event.Type = AppEventType::SensorActivate;
+	event.Handler = AppTask::SensorActivateHandler;
+	AppTask::Instance().PostEvent(event);
 
 	return CHIP_NO_ERROR;
 }
